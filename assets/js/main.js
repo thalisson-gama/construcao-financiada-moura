@@ -121,7 +121,7 @@
 
   /* ---------------- REVEAL ON SCROLL ---------------- */
   const reveals = document.querySelectorAll(
-    '.section-title, .section-lead, .pillar, .process__step, .gallery__item, .testimonial, .proof__item, .viability__checks li'
+    '.section-title, .section-lead, .pillar, .process__step, .financing__card, .gallery__item, .proof__item, .viability__checks li'
   );
   reveals.forEach((el) => el.classList.add('reveal'));
   if ('IntersectionObserver' in window) {
