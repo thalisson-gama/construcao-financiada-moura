@@ -125,7 +125,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 .eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-body);
   font-size: var(--fs-eyebrow);
   font-weight: 600;
@@ -134,7 +136,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--bronze-500);
   margin-bottom: 1rem;
 }
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
 .eyebrow--dark { color: var(--bronze-700); }
+/* hero eyebrow has no rule (lives over video, looks cleaner without) */
+.hero .eyebrow::before { display: none; }
 
 .section-title {
   font-size: var(--fs-h2);
@@ -151,7 +163,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-size: var(--fs-lead);
   max-width: 62ch;
   color: var(--ink-500);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 .section-lead--short { max-width: 58ch; }
 
@@ -453,21 +465,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =================================================================
-   POSITIONING                                                        */
-.positioning {
-  background: var(--cream-50);
-  padding: clamp(70px, 10vw, 130px) 0;
-}
-.positioning__inner {
-  max-width: 900px;
-}
-
-/* =================================================================
    PILLARS (4 diferenciais)                                           */
 .pillars {
   background: var(--cream-50);
   color: var(--ink-900);
-  padding: clamp(80px, 10vw, 130px) 0;
+  padding: clamp(64px, 7vw, 100px) 0;
   position: relative;
   overflow: hidden;
 }
@@ -499,7 +501,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .pillars__grid {
   display: grid;
   gap: 18px;
-  margin-top: 3rem;
+  margin-top: 2.25rem;
   grid-template-columns: 1fr;
 }
 @media (min-width: 720px) {
@@ -530,6 +532,28 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
 }
+.pillar__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.35rem;
+  background: linear-gradient(135deg, rgba(191,143,112,0.14), rgba(249,206,167,0.06));
+  border: 1px solid rgba(191,143,112,0.28);
+  color: var(--bronze-600);
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+.pillar__icon svg {
+  width: 34px;
+  height: 34px;
+}
+.pillar:hover .pillar__icon {
+  transform: translateY(-2px) scale(1.04);
+  background: linear-gradient(135deg, rgba(191,143,112,0.22), rgba(249,206,167,0.12));
+  border-color: rgba(191,143,112,0.55);
+  color: var(--bronze-700);
+}
 .pillar__title {
   font-size: var(--fs-h3);
   margin-bottom: 0.75rem;
@@ -546,10 +570,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    PROCESS                                                            */
 .process {
   background: var(--cream-50);
-  padding: clamp(80px, 10vw, 130px) 0;
+  padding: clamp(64px, 7vw, 100px) 0;
 }
 .process__list {
-  margin-top: 3rem;
+  margin-top: 2.25rem;
   display: grid;
   gap: 18px;
   counter-reset: step;
@@ -599,11 +623,26 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =================================================================
+   Section transition helper: a subtle bronze top-rule on dark
+   sections, so the eye gets a clear "new section" cue coming from
+   a light section above. Painted directly on the section bg so it
+   doesn't collide with ::before/::after decorative layers.            */
+.financing,
+.gallery,
+.viability {
+  background-image:
+    linear-gradient(90deg, transparent 0%, rgba(191,143,112,0.0) 10%, rgba(191,143,112,0.55) 50%, rgba(191,143,112,0.0) 90%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: top left;
+}
+
+/* =================================================================
    FINANCING CARDS                                                    */
 .financing {
-  background: var(--navy-900);
+  background-color: var(--navy-900);
   color: #fff;
-  padding: clamp(80px, 10vw, 130px) 0;
+  padding: clamp(64px, 7vw, 100px) 0;
   position: relative;
   overflow: hidden;
 }
@@ -613,7 +652,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .financing .section-lead { color: rgba(255,255,255,0.78); }
 
 .financing__grid {
-  margin-top: 3rem;
+  margin-top: 2.25rem;
   display: grid;
   gap: 22px;
   grid-template-columns: 1fr;
@@ -759,11 +798,102 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =================================================================
+   EXPERTS (Garantimos segurança)                                     */
+.experts {
+  background: var(--cream-50);
+  color: var(--ink-900);
+  padding: clamp(64px, 7vw, 100px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.experts::before {
+  content: '';
+  position: absolute;
+  left: -120px;
+  top: -120px;
+  width: 360px;
+  height: 360px;
+  border: 1px solid var(--line-dark);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.experts::after {
+  content: '';
+  position: absolute;
+  right: -160px;
+  bottom: -160px;
+  width: 440px;
+  height: 440px;
+  border: 1px solid var(--line-dark);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.experts .eyebrow { color: var(--bronze-700); }
+.experts .section-title { color: var(--ink-900); }
+.experts .section-title .accent { color: var(--bronze-600); }
+
+.experts__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 900px) {
+  .experts__inner {
+    grid-template-columns: minmax(280px, 0.8fr) 1.2fr;
+  }
+}
+
+.experts__photo {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--navy-900);
+}
+@media (min-width: 900px) {
+  .experts__photo { aspect-ratio: 3 / 4; }
+}
+.experts__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease);
+}
+.experts__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14,18,34,0) 55%, rgba(14,18,34,0.25) 100%);
+  pointer-events: none;
+}
+.experts:hover .experts__photo img { transform: scale(1.02); }
+
+.experts__copy { max-width: 560px; }
+.experts__lead {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-700);
+  margin-top: 1rem;
+}
+.experts__lead strong {
+  color: var(--bronze-700);
+  font-weight: 600;
+}
+.experts__cta { margin-top: 2rem; }
+
+/* =================================================================
    GALLERY                                                            */
 .gallery {
-  background: var(--navy-900);
-  padding: clamp(80px, 10vw, 130px) 0;
+  background-color: var(--navy-900);
+  padding: clamp(64px, 7vw, 100px) 0;
   color: #fff;
+  position: relative;
 }
 .gallery .eyebrow { color: var(--bronze-400); }
 .gallery .section-title { color: #fff; }
@@ -803,10 +933,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    TESTIMONIALS                                                       */
 .testimonials {
   background: var(--cream-50);
-  padding: clamp(80px, 10vw, 130px) 0;
+  padding: clamp(64px, 7vw, 100px) 0;
 }
 .testimonials__grid {
-  margin-top: 3rem;
+  margin-top: 2.25rem;
   display: grid;
   gap: 22px;
   grid-template-columns: 1fr;
@@ -872,9 +1002,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* =================================================================
    VIABILITY (CTA + FORM)                                             */
 .viability {
-  background: var(--navy-900);
+  background-color: var(--navy-900);
   color: #fff;
-  padding: clamp(80px, 10vw, 140px) 0;
+  padding: clamp(64px, 7vw, 104px) 0;
   position: relative;
   overflow: hidden;
 }
