@@ -47,10 +47,19 @@
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <!-- GTM - Head (client) -->
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-K3CCHRCD');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
-  <!-- GTM - Body start (client) -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3CCHRCD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ============================================================== -->
   <!-- HERO | scroll-driven video                                     -->
@@ -109,7 +118,7 @@
             alta qualidade, entrega no prazo e gestão completa.
           </h1>
           <p class="hero__sub">
-            Projeto, obra e financiamento bancário num só contrato - com alta qualidade, garantia de prazo e cada etapa documentada por nota fiscal.
+            Projetos, obra e financiamento bancário numa só gestão - com alta qualidade, garantia de prazo e cada etapa documentada por nota fiscal.
           </p>
           <div class="hero__cta">
             <a href="#viabilidade" class="btn btn--accent btn--lg">Solicitar análise de viabilidade</a>
@@ -234,7 +243,7 @@
       <div class="financing__grid">
         <article class="financing__card">
           <div class="financing__img">
-            <img loading="lazy" src="assets/img/obras/obra-01.webp" alt="Casa térrea 180 m²" />
+            <img loading="lazy" src="assets/img/obras/financing-01.webp" alt="Casa térrea 180 m²" />
           </div>
           <div class="financing__body">
             <h3 class="financing__type">Casa térrea <span>180m²</span></h3>
@@ -255,7 +264,7 @@
 
         <article class="financing__card">
           <div class="financing__img">
-            <img loading="lazy" src="assets/img/obras/obra-03.webp" alt="Casa térrea 210 m²" />
+            <img loading="lazy" src="assets/img/obras/financing-02.webp" alt="Casa térrea 210 m²" />
           </div>
           <div class="financing__body">
             <h3 class="financing__type">Casa térrea <span>210m²</span></h3>
@@ -276,7 +285,7 @@
 
         <article class="financing__card">
           <div class="financing__img">
-            <img loading="lazy" src="assets/img/obras/obra-04.webp" alt="Casa sobrado 275 m²" />
+            <img loading="lazy" src="assets/img/obras/financing-03.webp" alt="Casa sobrado 275 m²" />
           </div>
           <div class="financing__body">
             <h3 class="financing__type">Casa sobrado <span>275m²</span></h3>
@@ -385,7 +394,7 @@
             <h3>Projeto e aprovação</h3>
           </div>
           <p>
-            Desenvolvemos o projeto arquitetônico e estrutural, aprovamos junto à prefeitura e ao banco financiador, e travamos o escopo e o orçamento do contrato.
+            Damos suporte do projeto às chaves, com transparência e controle técnico em todo o processo e estratégias para aprovação mais rápida nos órgãos competentes.
           </p>
         </li>
         <li class="process__step">
@@ -463,39 +472,55 @@
         <div class="form__row">
           <div class="form__field">
             <label for="field-terreno">Já possui terreno?</label>
-            <select id="field-terreno" name="terreno">
+            <select id="field-terreno" name="tipo_terreno">
               <option value="">Selecione</option>
-              <option value="Sim, terreno próprio">Sim, terreno próprio</option>
-              <option value="Vou adquirir via financiamento">Vou adquirir via financiamento</option>
-              <option value="Ainda não tenho">Ainda não tenho</option>
+              <option value="proprio">Sim, terreno próprio</option>
+              <option value="financiamento">Vou adquirir via financiamento</option>
+              <option value="nao_tenho">Ainda não tenho</option>
             </select>
           </div>
 
           <div class="form__field">
-            <label for="field-projeto">Já tem projeto?</label>
-            <select id="field-projeto" name="projeto">
+            <label for="field-projeto">Já tem projeto arquitetônico?</label>
+            <select id="field-projeto" name="projeto_arquitetonico">
               <option value="">Selecione</option>
-              <option value="Sim, projeto aprovado">Sim, projeto aprovado</option>
-              <option value="Em desenvolvimento">Em desenvolvimento</option>
-              <option value="Precisamos do projeto">Precisamos do projeto</option>
+              <option value="sim_aprovado">Sim, projeto aprovado</option>
+              <option value="em_desenvolvimento">Em desenvolvimento</option>
+              <option value="nao">Ainda não</option>
             </select>
           </div>
         </div>
 
         <div class="form__field">
           <label for="field-renda">Renda familiar mensal aproximada</label>
-          <select id="field-renda" name="renda">
+          <select id="field-renda" name="renda_familiar">
             <option value="">Selecione</option>
-            <option value="Até R$ 20.000">Até R$ 20.000</option>
-            <option value="R$ 20.000 – R$ 30.000">R$ 20.000 – R$ 30.000</option>
-            <option value="R$ 30.000 – R$ 50.000">R$ 30.000 – R$ 50.000</option>
-            <option value="Acima de R$ 50.000">Acima de R$ 50.000</option>
+            <option value="ate_20k">Até R$ 20.000</option>
+            <option value="20k_30k">R$ 20.000 - R$ 30.000</option>
+            <option value="30k_50k">R$ 30.000 - R$ 50.000</option>
+            <option value="acima_50k">Acima de R$ 50.000</option>
           </select>
         </div>
 
-        <!-- Hidden fields preserved from Elementor (site + UTM tracking) -->
+        <!-- ============================================================
+             WEBHOOK CAPTURE: https://m2black.atenderbem.com/webhookcapture/
+             capture/35d910f584164a2f9e43251854b7053b
+
+             Convenção AtenderBem (case-sensitive):
+             - Padrão (3)      : Nome, Email, WhatsApp (digits-only)
+             - Customizadas (3): tipo_terreno, projeto_arquitetonico, renda_familiar
+             - Metadados   (5) : Nome_do_site, Nome_da_pagina, URL_da_pagina,
+                                 Data (dd/mm/aaaa), Horario (hh:mm)
+             - UTMs        (5) : utm_source/medium/campaign/term/content
+
+             Os campos Data, Horario, URL_da_pagina e Nome_da_pagina são
+             preenchidos em tempo de submit por assets/js/main.js.
+             ============================================================ -->
         <input type="hidden" name="Nome_do_site" value="Moura Engenharia" />
-        <input type="hidden" id="field_f69b13c" name="Nome_da_pagina" value="Home | Construção Financiada" />
+        <input type="hidden" id="Nome_da_pagina" name="Nome_da_pagina" value="" />
+        <input type="hidden" id="URL_da_pagina" name="URL_da_pagina" value="" />
+        <input type="hidden" id="Data" name="Data" value="" />
+        <input type="hidden" id="Horario" name="Horario" value="" />
         <input type="hidden" id="utm_source" name="utm_source" value="" />
         <input type="hidden" id="utm_medium" name="utm_medium" value="" />
         <input type="hidden" id="utm_campaign" name="utm_campaign" value="" />
