@@ -217,7 +217,35 @@
         return;
       }
 
-      // Build FormData keeping the original Elementor field names
+      // ---- Populate webhook metadata fields right before submission ----
+      // AtenderBem expects these as case-sensitive keys in the POST payload.
+      const pad2 = (n) => String(n).padStart(2, '0');
+      const now = new Date();
+      const dataStr    = `${pad2(now.getDate())}/${pad2(now.getMonth() + 1)}/${now.getFullYear()}`;
+      const horarioStr = `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
+      const setHidden = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.value = value;
+      };
+      setHidden('Data', dataStr);
+      setHidden('Horario', horarioStr);
+      setHidden('URL_da_pagina', window.location.href);
+      setHidden('Nome_da_pagina', document.title || 'Home | Moura Engenharia');
+
+      // ---- Normalize WhatsApp to digits-only (no country code) ----
+      // User may enter "(34) 9 8871-0814" or "+55 34 98871 0814". The CRM
+      // expects just the digits. We strip all non-digits and remove a
+      // leading "55" so the DDD is the first two digits.
+      const whatsInput = form.querySelector('input[name="WhatsApp"]');
+      if (whatsInput) {
+        let digits = (whatsInput.value || '').replace(/\D+/g, '');
+        if (digits.length > 11 && digits.startsWith('55')) {
+          digits = digits.slice(2);
+        }
+        whatsInput.value = digits;
+      }
+
+      // Build FormData using the normalized fields above.
       const fd = new FormData(form);
 
       try {
